@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema E-social - Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .pulse-success {
+            animation: pulseSuccess 2s infinite;
+        }
+        
+        @keyframes pulseSuccess {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-lg border-b-4 border-blue-600">
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="bg-blue-600 text-white p-3 rounded-lg">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-900">E-social Demo</h1>
+                        <p class="text-gray-600">Sistema de Escrituração Digital das Obrigações Fiscais</p>
+                    </div>
+                </div>
+                <div class="bg-green-100 text-green-800 px-4 py-2 rounded-full font-semibold">
+                    🟢 Sistema Online
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Navigation Tabs -->
+        <div class="bg-white rounded-xl shadow-lg mb-8">
+            <div class="border-b border-gray-200">
+                <nav class="flex space-x-8 px-6">
+                    <button onclick="showTab('dashboard')" id="tab-dashboard" class="tab-button py-4 px-2 border-b-2 border-blue-600 text-blue-600 font-semibold">
+                        📊 Dashboard
+                    </button>
+                    <button onclick="showTab('eventos')" id="tab-eventos" class="tab-button py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700">
+                        📝 Enviar Eventos
+                    </button>
+                    <button onclick="showTab('consultas')" id="tab-consultas" class="tab-button py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700">
+                        🔍 Consultas
+                    </button>
+                    <button onclick="showTab('relatorios')" id="tab-relatorios" class="tab-button py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700">
+                        📈 Relatórios
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard-content" class="tab-content">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm font-medium">Eventos Enviados</p>
+                            <p class="text-3xl font-bold text-gray-900">1,247</p>
+                        </div>
+                        <div class="bg-blue-100 p-3 rounded-full">
+                            <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+                                <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v8a1 1 0 001 1h2a1 1 0 001-1V8a1 1 0 00-1-1h-2z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm font-medium">Processados</p>
+                            <p class="text-3xl font-bold text-gray-900">1,198</p>
+                        </div>
+                        <div class="bg-green-100 p-3 rounded-full">
+                            <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-yellow-500">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm font-medium">Pendentes</p>
+                            <p class="text-3xl font-bold text-gray-900">32</p>
+                        </div>
+                        <div class="bg-yellow-100 p-3 rounded-full">
+                            <svg class="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm font-medium">Com Erro</p>
+                            <p class="text-3xl font-bold text-gray-900">17</p>
+                        </div>
+                        <div class="bg-red-100 p-3 rounded-full">
+                            <svg class="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Events -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-6">Eventos Recentes</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-gray-200">
+                                <th class="text-left py-3 px-4 font-semibold text-gray-700">Evento</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-700">Funcionário</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-700">Data</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-700">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                <td class="py-3 px-4">S-2200 - Admissão</td>
+                                <td class="py-3 px-4">João Silva</td>
+                                <td class="py-3 px-4">15/12/2024</td>
+                                <td class="py-3 px-4"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">Processado</span></td>
+                            </tr>
+                            <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                <td class="py-3 px-4">S-1200 - Folha de Pagamento</td>
+                                <td class="py-3 px-4">Maria Santos</td>
+                                <td class="py-3 px-4">14/12/2024</td>
+                                <td class="py-3 px-4"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-sm">Pendente</span></td>
+                            </tr>
+                            <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                <td class="py-3 px-4">S-2300 - Afastamento</td>
+                                <td class="py-3 px-4">Carlos Oliveira</td>
+                                <td class="py-3 px-4">13/12/2024</td>
+                                <td class="py-3 px-4"><span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-sm">Erro</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Eventos Tab -->
+        <div id="eventos-content" class="tab-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Event Form -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-6">Enviar Novo Evento</h3>
+                    
+                    <form id="event-form" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Tipo de Evento</label>
+                            <select id="event-type" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="">Selecione o evento</option>
+                                <option value="S-2200">S-2200 - Admissão de Trabalhador</option>
+                                <option value="S-2300">S-2300 - Afastamento Temporário</option>
+                                <option value="S-2400">S-2400 - Cadastro de Beneficiário</option>
+                                <option value="S-1200">S-1200 - Remuneração do Trabalhador</option>
+                                <option value="S-3000">S-3000 - Exclusão de Evento</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">CPF do Trabalhador</label>
+                            <input type="text" id="worker-cpf" placeholder="000.000.000-00" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Nome Completo</label>
+                            <input type="text" id="worker-name" placeholder="Nome completo do trabalhador" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Data do Evento</label>
+                                <input type="date" id="event-date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Matrícula</label>
+                                <input type="text" id="worker-id" placeholder="Matrícula do funcionário" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Observações</label>
+                            <textarea id="observations" rows="3" placeholder="Informações adicionais sobre o evento" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition duration-200 flex items-center justify-center space-x-2">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
+                            </svg>
+                            <span>Enviar Evento</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Event Preview -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-6">Pré-visualização XML</h3>
+                    <div id="xml-preview" class="bg-gray-100 rounded-lg p-4 h-96 overflow-y-auto">
+                        <pre class="text-sm text-gray-600 whitespace-pre-wrap">Selecione um tipo de evento para visualizar o XML que será gerado...</pre>
+                    </div>
+                    
+                    <div id="validation-status" class="mt-4 hidden">
+                        <div class="flex items-center space-x-2 text-green-600">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                            </svg>
+                            <span class="font-semibold">XML válido e pronto para envio</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Processing Status -->
+            <div id="processing-status" class="hidden mt-8 bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-6">Status do Processamento</h3>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div id="status-icon" class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                            <div class="w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                        </div>
+                        <div>
+                            <p id="status-text" class="text-lg font-semibold text-gray-900">Enviando evento...</p>
+                            <p id="status-detail" class="text-gray-600">Aguarde o processamento pelo governo</p>
+                        </div>
+                    </div>
+                    <div id="protocol-number" class="text-right">
+                        <p class="text-sm text-gray-600">Protocolo</p>
+                        <p class="text-lg font-bold text-blue-600">#ESO-2024-001247</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Consultas Tab -->
+        <div id="consultas-content" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-6">Consultar Eventos</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">CPF do Trabalhador</label>
+                        <input type="text" placeholder="000.000.000-00" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Período Inicial</label>
+                        <input type="date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Período Final</label>
+                        <input type="date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                </div>
+
+                <button onclick="performSearch()" class="bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition duration-200 mb-6">
+                    🔍 Consultar
+                </button>
+
+                <div id="search-results" class="hidden">
+                    <h4 class="text-lg font-semibold text-gray-900 mb-4">Resultados da Consulta</h4>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="border-b border-gray-200">
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-700">Protocolo</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-700">Evento</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-700">Data</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-700">Status</th>
+                                    <th class="text-left py-3 px-4 font-semibold text-gray-700">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                    <td class="py-3 px-4">#ESO-2024-001245</td>
+                                    <td class="py-3 px-4">S-2200 - Admissão</td>
+                                    <td class="py-3 px-4">15/12/2024</td>
+                                    <td class="py-3 px-4"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm">Processado</span></td>
+                                    <td class="py-3 px-4">
+                                        <button class="text-blue-600 hover:text-blue-800 font-semibold">Ver Detalhes</button>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                    <td class="py-3 px-4">#ESO-2024-001246</td>
+                                    <td class="py-3 px-4">S-1200 - Folha</td>
+                                    <td class="py-3 px-4">14/12/2024</td>
+                                    <td class="py-3 px-4"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-sm">Pendente</span></td>
+                                    <td class="py-3 px-4">
+                                        <button class="text-blue-600 hover:text-blue-800 font-semibold">Ver Detalhes</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Relatórios Tab -->
+        <div id="relatorios-content" class="tab-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-6">Relatórios Disponíveis</h3>
+                    <div class="space-y-4">
+                        <div class="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 cursor-pointer">
+                            <h4 class="font-semibold text-gray-900">📊 Relatório de Eventos por Período</h4>
+                            <p class="text-gray-600 text-sm mt-1">Visualize todos os eventos enviados em um período específico</p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 cursor-pointer">
+                            <h4 class="font-semibold text-gray-900">👥 Relatório de Funcionários</h4>
+                            <p class="text-gray-600 text-sm mt-1">Lista completa de funcionários e seus eventos</p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 cursor-pointer">
+                            <h4 class="font-semibold text-gray-900">⚠️ Relatório de Erros</h4>
+                            <p class="text-gray-600 text-sm mt-1">Eventos com erro e suas respectivas correções</p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 cursor-pointer">
+                            <h4 class="font-semibold text-gray-900">💰 Relatório Financeiro</h4>
+                            <p class="text-gray-600 text-sm mt-1">Resumo de folhas de pagamento e contribuições</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-6">Gráfico de Eventos</h3>
+                    <div class="h-64 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="text-4xl mb-2">📈</div>
+                            <p class="text-gray-600">Gráfico de eventos por mês</p>
+                            <p class="text-sm text-gray-500 mt-2">Demo - Dados simulados</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.add('hidden'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab-button');
+            tabs.forEach(tab => {
+                tab.classList.remove('border-blue-600', 'text-blue-600');
+                tab.classList.add('border-transparent', 'text-gray-500');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName + '-content').classList.remove('hidden');
+            document.getElementById(tabName + '-content').classList.add('fade-in');
+            
+            // Activate selected tab
+            const activeTab = document.getElementById('tab-' + tabName);
+            activeTab.classList.remove('border-transparent', 'text-gray-500');
+            activeTab.classList.add('border-blue-600', 'text-blue-600');
+        }
+
+        // Event form functionality
+        document.getElementById('event-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const eventType = document.getElementById('event-type').value;
+            const workerName = document.getElementById('worker-name').value;
+            const workerCpf = document.getElementById('worker-cpf').value;
+            
+            if (!eventType || !workerName || !workerCpf) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+            
+            // Show processing status
+            document.getElementById('processing-status').classList.remove('hidden');
+            document.getElementById('processing-status').classList.add('fade-in');
+            
+            // Simulate processing
+            setTimeout(() => {
+                const statusIcon = document.getElementById('status-icon');
+                const statusText = document.getElementById('status-text');
+                const statusDetail = document.getElementById('status-detail');
+                
+                statusIcon.innerHTML = '<svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>';
+                statusIcon.classList.remove('bg-blue-100');
+                statusIcon.classList.add('bg-green-100', 'pulse-success');
+                
+                statusText.textContent = 'Evento processado com sucesso!';
+                statusDetail.textContent = 'O evento foi aceito pelo governo e está ativo no sistema.';
+                
+                // Reset form
+                document.getElementById('event-form').reset();
+                document.getElementById('xml-preview').innerHTML = '<pre class="text-sm text-gray-600 whitespace-pre-wrap">Selecione um tipo de evento para visualizar o XML que será gerado...</pre>';
+                document.getElementById('validation-status').classList.add('hidden');
+            }, 3000);
+        });
+
+        // XML Preview functionality
+        document.getElementById('event-type').addEventListener('change', function() {
+            const eventType = this.value;
+            const xmlPreview = document.getElementById('xml-preview');
+            const validationStatus = document.getElementById('validation-status');
+            
+            if (eventType) {
+                const sampleXml = generateSampleXML(eventType);
+                xmlPreview.innerHTML = `<pre class="text-sm text-gray-800 whitespace-pre-wrap">${sampleXml}</pre>`;
+                validationStatus.classList.remove('hidden');
+            } else {
+                xmlPreview.innerHTML = '<pre class="text-sm text-gray-600 whitespace-pre-wrap">Selecione um tipo de evento para visualizar o XML que será gerado...</pre>';
+                validationStatus.classList.add('hidden');
+            }
+        });
+
+        function generateSampleXML(eventType) {
+            const xmlTemplates = {
+                'S-2200': `<?xml version="1.0" encoding="UTF-8"?>
+<eSocial xmlns="http://www.esocial.gov.br/schema/evt/evtAdmissao/v_S_01_02_00">
+  <evtAdmissao Id="ID1234567890123456789012345678901234567890">
+    <ideEvento>
+      <indRetif>1</indRetif>
+      <tpAmb>2</tpAmb>
+      <procEmi>1</procEmi>
+      <verProc>1.0</verProc>
+    </ideEvento>
+    <ideEmpregador>
+      <tpInsc>1</tpInsc>
+      <nrInsc>12345678000195</nrInsc>
+    </ideEmpregador>
+    <trabalhador>
+      <cpfTrab>12345678901</cpfTrab>
+      <nmTrab>Nome do Trabalhador</nmTrab>
+      <sexo>M</sexo>
+      <racaCor>1</racaCor>
+      <estCiv>1</estCiv>
+      <grauInstr>08</grauInstr>
+      <nmSoc>Nome Social</nmSoc>
+    </trabalhador>
+  </evtAdmissao>
+</eSocial>`,
+                'S-1200': `<?xml version="1.0" encoding="UTF-8"?>
+<eSocial xmlns="http://www.esocial.gov.br/schema/evt/evtRemun/v_S_01_02_00">
+  <evtRemun Id="ID1234567890123456789012345678901234567890">
+    <ideEvento>
+      <indRetif>1</indRetif>
+      <perApur>2024-12</perApur>
+      <tpAmb>2</tpAmb>
+      <procEmi>1</procEmi>
+      <verProc>1.0</verProc>
+    </ideEvento>
+    <ideEmpregador>
+      <tpInsc>1</tpInsc>
+      <nrInsc>12345678000195</nrInsc>
+    </ideEmpregador>
+    <ideTrabalhador>
+      <cpfTrab>12345678901</cpfTrab>
+    </ideTrabalhador>
+  </evtRemun>
+</eSocial>`
+            };
+            
+            return xmlTemplates[eventType] || 'XML de exemplo não disponível para este tipo de evento.';
+        }
+
+        // Search functionality
+        function performSearch() {
+            const searchResults = document.getElementById('search-results');
+            searchResults.classList.remove('hidden');
+            searchResults.classList.add('fade-in');
+        }
+
+        // Set default date to today
+        document.getElementById('event-date').valueAsDate = new Date();
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9685b908c1e52737',t:'MTc1NDA1NTM2OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
